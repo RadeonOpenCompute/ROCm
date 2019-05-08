@@ -1,6 +1,6 @@
 ## Are You Ready to ROCK?
-The ROCm Platform brings a rich foundation to advanced computing by seamlessly integrating the CPU and GPU with the goal of solving real-world problems.
-This software enables the high-performance operation of AMD GPUs for computationally oriented tasks in the Linux operating system.
+The ROCm Platform brings a rich foundation to advanced computing by seamlessly integrating the GPU with the Linux operating system with goal of solving real-world problems.
+This software enables the high-performance computational ability of AMD GPUs using several programming models.
 
 ### Current ROCm Version: 2.4
 
@@ -8,7 +8,7 @@ This software enables the high-performance operation of AMD GPUs for computation
 - [The latest ROCm platform - ROCm 2.4](#the-latest-rocm-platform---rocm-240)
 - [Hardware Support](#hardware-support)
   * [Supported GPUs](#supported-gpus)
-  * [Supported CPUs](#supported-cpus)
+  * [Supported host CPUs](#supported-host-cpus)
   * [Not supported or limited support under ROCm](#not-supported-or-limited-support-under-rocm)
 - [Supported Operating Systems](#supported-operating-systems---new-operating-systems-available)
   * [ROCm support in upstream Linux kernels](#rocm-support-in-upstream-linux-kernels)
@@ -90,7 +90,7 @@ The latest supported version of the drivers, tools, libraries and source code fo
 
 ### Hardware Support
 ROCm is focused on using AMD GPUs to accelerate computational tasks such as machine learning, engineering workloads, and scientific computing.
-In order to focus our development efforts on these domains of interest, ROCm supports a targeted set of hardware configurations which are detailed further in this section.
+In order to focus our development efforts on these domains of interest, ROCm supports a targeted set of GPUs with compatible host CPUs which are detailed further in this section.
 
 #### Supported GPUs
 Because the ROCm Platform has a focus on particular computational domains, we offer official support for a selection of AMD GPUs that are designed to offer good performance and price in these domains.
@@ -122,7 +122,7 @@ As such, they are not yet officially supported targets for ROCm.
 
 For a more detailed list of hardware support, please see [the following documentation](https://rocm.github.io/hardware.html).
 
-#### Supported CPUs
+#### Supported host CPUs
 As described above, GFX8 GPUs require PCIe 3.0 with PCIe atomics in order to run ROCm.
 In particular, the CPU and every active PCIe point between the CPU and GPU require support for PCIe 3.0 and PCIe atomics.
 The CPU root must indicate PCIe AtomicOp Completion capabilities and any intermediate switch must indicate PCIe AtomicOp Routing capabilities.
@@ -160,6 +160,9 @@ does not require or take advantage of PCIe Atomics. However, we still recommend 
 from the list provided above for compatibility purposes.
 
 #### Not supported or limited support under ROCm 
+
+Use of any CPU as an OpenCL compute device is not supported by ROCm.
+
 ##### Limited support 
 
 * ROCm 2.4.x should support PCIe 2.0 enabled CPUs such as the AMD Opteron, Phenom, Phenom II, Athlon, Athlon X2, Athlon II and older Intel Xeon and Intel Core Architecture and Pentium CPUs. However, we have done very limited testing on these configurations, since our test farm has been catering to CPUs listed above. This is where we need community support. _If you find problems on such setups, please report these issues_.
