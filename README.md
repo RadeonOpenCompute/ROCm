@@ -120,6 +120,10 @@ SLURM (Simple Linux Utility for Resource Management) is an open source, fault-to
 The TensorFlow build system requires the following additional changes to support the new installation path:
 
 * Ensure the /opt/rocm symbolic link is preset and points to the right version of the ROCm toolkit.
+
+        ls -l /opt/rocm
+        lrwxrwxrwx 1 root root 15 Feb 28 14:14 /opt/rocm -> /opt/rocm-3.1.0
+
 * Modify the build configure file to include the header files from the respective ROCm version-specific folder
 
 ### HIP Compiler Dependency Issue
@@ -178,7 +182,8 @@ To install from a Debian Repository:
 
   The current rocm.gpg.key is not available in a standard key ring distribution, but has the following sha1sum hash:
 
-  	e85a40d1a43453fe37d63aa6899bc96e08f2817a rocm.gpg.key
+	wget -qO - http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | sha1sum
+  	e85a40d1a43453fe37d63aa6899bc96e08f2817a -
 	
 
 3. Install the ROCm meta-package.
@@ -247,8 +252,7 @@ You can install the ROCm user-level software without installing the AMD's custom
 
 	sudo apt update	
 	sudo apt install rocm-dev	
-	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' 
-	sudo tee /etc/udev/rules.d/70-kfd.rules
+	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' |	sudo tee /etc/udev/rules.d/70-kfd.rules
 
 
 ## CentOS RHEL v7 
