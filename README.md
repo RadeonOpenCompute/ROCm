@@ -198,12 +198,13 @@ To install from a Debian Repository:
 5. To add your user to the video group, use the following command for the sudo password:
 	
 		sudo usermod -a -G video $LOGNAME
+		sudo usermod -a -G render $LOGNAME
 
 6. By default, add any future users to the video group. Run the following command to add users to the video group:
 
    		echo 'ADD_EXTRA_GROUPS=1' 		
 		sudo tee -a /etc/adduser.conf   
-   		echo 'EXTRA_GROUPS=video' 		
+   		echo 'EXTRA_GROUPS=video,render' 		
 		sudo tee -a /etc/adduser.conf
    
 7. Restart the system.
@@ -243,6 +244,14 @@ Note: To execute ROCm enabled applications, you must install the full ROCm drive
 
 
 ### Using Debian-based ROCm with Upstream Kernel Drivers
+
+Ensure kernel have been built with required options:
+
+        grep -e "CONFIG_HSA_AMD" -e "CONFIG_DRM_AMDGPU_USERPTR" -e "CONFIG_HMM_MIRROR" /boot/config-`uname -r`
+        CONFIG_HMM_MIRROR=y
+        CONFIG_DRM_AMDGPU_USERPTR=y
+        CONFIG_HSA_AMD=y
+	
 You can install the ROCm user-level software without installing the AMD's custom ROCk kernel driver. To use the upstream kernels, run the following commands instead of installing rocm-dkms:
 
 	sudo apt update	
@@ -364,7 +373,8 @@ You can develop and test ROCm packages on different systems. For example, some d
 Note: To execute ROCm-enabled applications, you will require a system installed with the full ROCm driver stack.
 
 ### Using ROCm with Upstream Kernel Drivers
-You can install ROCm user-level software without installing AMD's custom ROCk kernel driver. To use the upstream kernel drivers, run the following commands 
+
+You can install ROCm user-level software without installing AMD's custom ROCk kernel driver. To use the upstream kernel drivers, run the following commands
 
 	sudo yum install rocm-dev
 	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"'  
