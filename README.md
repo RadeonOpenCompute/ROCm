@@ -167,13 +167,14 @@ To install from a Debian Repository:
     
  2. Add the ROCm apt repository.
 
-     For Debian-based systems like Ubuntu, configure the Debian ROCm repository as follows:
+     For Debian-based systems like Ubuntu, configure the Debian ROCm repository and update the repository list:
    
         wget -qO - http://repo.radeon.com/rocm/apt/debian/rocm.gpg.key | sudo apt-key add -
         
         echo 'deb [arch=amd64] http://repo.radeon.com/rocm/apt/debian/ xenial main' | sudo tee /etc/apt/sources.list.d/rocm.list
+        
+        sudo apt-get update
 
-      
   The gpg key may change; ensure it is updated when installing a new release. If the key signature verification fails while updating,     re-add the key from the ROCm apt repository. 
 
   The current rocm.gpg.key is not available in a standard key ring distribution, but has the following sha1sum hash:
@@ -182,12 +183,11 @@ To install from a Debian Repository:
 	
 
 3. Install the ROCm meta-package.
-   Update the appropriate repository list and install the rocm-dkms meta-package:
+   The regular AMD GPU driver is fully substituted by ROCm. Remove any earlier installations (caveat: this may end jobs using the GPU). Then install the rocm-dkms meta-package:
 
-     	sudo apt update
-   
-     	sudo apt install rocm-dkms
-
+        sudo dpkg --purge amdgpu-dkms
+        
+        sudo apt install rocm-dkms
 
 4. Set permissions.
    To access the GPU, you must be a user in the video group. Ensure your user account is a member of the video group prior to using ROCm. To identify the groups you are a member of, use the following command:	   
