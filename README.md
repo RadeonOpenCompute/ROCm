@@ -379,24 +379,24 @@ The following section tells you how to perform an install and uninstall ROCm on 
 ### Installation
 1. Install the "dkms" package.
 
-	sudo SUSEConnect --product PackageHub/15.1/x86_64
-	sudo zypper install dkms
+		sudo SUSEConnect --product PackageHub/15.1/x86_64
+		sudo zypper install dkms
 	
 2. Add the ROCm repo.
  
-	sudo zypper clean –all
-	sudo zypper addrepo --no-gpgcheck http://repo.radeon.com/rocm/zyp/zypper/ rocm 
-	sudo zypper ref
-	zypper install rocm-dkms
-	sudo zypper install rocm-dkms
-	sudo reboot
+		sudo zypper clean –all
+		sudo zypper addrepo --no-gpgcheck https://repo.radeon.com/rocm/zyp/zypper/ rocm 
+		sudo zypper ref
+		zypper install rocm-dkms
+		sudo zypper install rocm-dkms
+		sudo reboot
 
-3. Run the following command once
+3. Run the following commands once
 
-	cat <<EOF | sudo tee /etc/modprobe.d/10-unsupported-modules.conf
-	allow_unsupported_modules 1
-	EOF
-	sudo modprobe amdgpu
+		cat <<EOF | sudo tee /etc/modprobe.d/10-unsupported-modules.conf
+		allow_unsupported_modules 1
+		EOF
+		sudo modprobe amdgpu
 
 4. Verify the ROCm installation.
 
