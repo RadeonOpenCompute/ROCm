@@ -247,7 +247,7 @@ You can install the ROCm user-level software without installing the AMD's custom
 
 	sudo apt update	
 	sudo apt install rocm-dev	
-	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' 
+	echo 'SUBSYSTEM=="kfd", KERNEL=="kfd", TAG+="uaccess", GROUP="video"' |
 	sudo tee /etc/udev/rules.d/70-kfd.rules
 
 
