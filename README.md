@@ -481,14 +481,28 @@ ROCm officially supports AMD GPUs that use following chips:
 
 * GFX9 GPUs
 
-  - "Vega 10" chips, such as on the AMD Radeon RX Vega 64 and Radeon Instinct MI25
-  
-  - "Vega 7nm" chips, such as on the Radeon Instinct MI50, Radeon Instinct MI60 or AMD Radeon VII, 
+  - 14 nm "Vega 10 XL" and "Vega 10 XT" chips, which LLVM calls a "gfx900" processor, found on:
+    - AMD Radeon RX Vega 56
+    - AMD Radeon RX Vega 64
+    - AMD Radeon RX Vega 64 Liquid
+    - AMD Radeon RX Vega Limited Edition
+    - AMD Radeon RX Vega Frontier Edition (Air Cooled)
+    - AMD Radeon RX Vega Frontier Edition (Liquid Cooled)
+    - AMD Radeon Instinct™ MI25
+    - AMD Radeon Pro WX 9100
+    - AMD Radeon Pro V340
+    - AMD Radeon Pro SSG (Vega, not Polaris)
+
+  - 7 nm "Vega 20" chips, which LLVM calls a "gfx906" processor, found on:
+    - AMD Radeon VII
+    - AMD Radeon Pro VII
+    - AMD Radeon Instinct™ MI50
+    - AMD Radeon Instinct™ MI60
 
 * CDNA GPUs
 
-  - MI100 chips such as on the AMD Instinct™ MI100
-
+  - 7 nm	"MI100 XL" chips, which LLVM calls a "gfx908" processor, found on:
+    - AMD Instinct™ MI100
 
 ROCm is a collection of software ranging from drivers and runtimes to libraries and developer tools.
 Some of this software may work with more GPUs than the "officially supported" list above, though AMD does not make any official claims of support for these devices on the ROCm software platform.
